@@ -1,0 +1,292 @@
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgb(255,255,255);
+  touch-action: pan-y;
+
+  /* cursor: none !important; */
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+@media screen
+{    
+    .only-print, .only-print *
+    {
+        display: none !important;
+    }
+}
+
+.App {
+  background: rgb(255,255,255);
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+input {
+  font-size: 4rem
+}
+
+.AppHeader, .GroupHeader, .DocumentHeader{
+  margin: 0;
+  padding: 0;
+}
+ 
+.TopBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+    height: 256px;
+    padding: 0 24px;
+    
+}
+.TopBar a {
+    margin-right: 18px;
+    text-decoration: none;
+}
+
+.table-row:nth-child(even) {
+  background: rgb(254, 254, 254);
+}
+
+.control {
+  position: fixed;
+  left:89%;
+  top: 50%;
+  display:flex;
+  flex-direction: column;
+  height:400px;
+  width:192px;
+  background: rgba(19, 115, 241, 0.7);
+  transition:all .7s ease-out;
+  border: 1px solid rgba(4, 110, 197, 0.8);
+  border-radius: .5em;
+  z-index: 999999;
+  /* cursor: none !important; */
+}
+
+.control p{
+  font-size: 1em;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 3px 3px rgba(0, 0, 0, .5); 
+  color: rgba(255, 255, 255, .9);
+}
+
+.control a{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 3px 3px rgba(0, 0, 0, .3); 
+  z-index: 999999;
+  /* cursor: none !important; */
+}
+ 
+.animated-page-wrapper {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* cursor: none !important; */
+}
+.page {
+    padding: 0 24px;
+    /* cursor: none !important; */
+}
+
+a {
+  font-family: Helvetica, Arial, sans-serif;
+  color:#000;
+  text-decoration: none;
+  /* ;cursor: none !important; */
+}
+
+.questions{
+  z-index: 0;
+}
+
+
+ 
+.groups, .events, .unions{
+  /* default overriden color */
+  background: rgb(255,255,255);
+  text-shadow: 0 3px 3px rgba(0, 0, 0, .4); 
+  background-repeat: repeat-y;
+  height: 100vh;
+  /* cursor: none !important; */
+}
+
+.unions{
+  height: 100vh;
+  /* without display:flex FadeTransitions wont's work*/
+  display: flex;
+  flex-direction: column;
+}
+
+.button a{
+  text-shadow: 0 3px 3px rgba(0, 0, 0, .3); 
+  transition: text-shadow .2 .1s ease; 
+  -o-transition: text-shadow .2s .1s ease; 
+  -moz-transition: text-shadow .2s .1s ease; 
+  -webkit-transition: text-shadow .2s .1s ease; 
+  /* cursor: none !important; */
+}
+
+.slim {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #cff;
+  font-variant: small-caps;
+}
+
+.pdfError {
+  color: red;
+  white-space: pre-line;
+  margin-top: 10%;
+}
+
+.groupButton, .backButton .controlButton{
+  cursor: none !important;
+}
+ 
+/* .backButton{
+  background: rgba(19, 115, 241, .7);
+} */
+
+video::-webkit-media-controls-panel {
+  display: flex !important;
+  /* opacity: 1 !important; */
+}
+
+/*
+ Animations
+*/
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-appear {
+  opacity: 0.01;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+input:required {
+	border: 1px solid red;
+}
+
+tr.selected {
+  background-color: rgb(184, 217, 243);
+}
+
+.tableWrapper a{
+  color: #00a2e2;
+}
+
+.loginform {
+  /* background: url('wood_pattern.png'); */
+  font-size: 10pt;
+}
+
+.loginform ul {
+  padding: 0;
+  margin: 0;
+}
+
+.loginform li {
+  display: inline;
+  float: left;
+}
+
+label {
+  
+  display: block;
+  color: #999;
+}
+.cf:before,
+.cf:after {
+    content: ""; 
+    display: table;
+}
+ 
+.cf:after {
+    clear: both;
+}
+.cf {
+    *zoom: 1;
+}
+:focus {
+  outline: 0;
+}
+
+.loginform input:not([type=button]) {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 
+        0px 1px 0px 0px rgba(250, 250, 250, 0.5) ;
+}
+
+.loginform input[type=button] {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: #64c8ef; /* Old browsers */
+  background: -moz-linear-gradient(top,  #64c8ef 0%, #00a2e2 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#64c8ef), color-stop(100%,#00a2e2)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #64c8ef 0%,#00a2e2 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64c8ef', endColorstr='#00a2e2',GradientType=0 ); /* IE6-9 */
+  color: #fff;
+  padding: 5px 15px;
+  margin-right: 0;
+  margin-top: 15px;
+  border-radius: 3px;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.wrapper{
+  display: table-cell;
+  float: left;
+margin: 2%;
+
+}

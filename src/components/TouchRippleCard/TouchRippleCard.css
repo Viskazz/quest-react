@@ -1,0 +1,49 @@
+.TouchRippleCard {
+    width:800px;
+    height: auto;
+    margin: 120px;
+    margin-bottom: 320px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    cursor: default;
+    transform: translate(0px, 0px);
+    text-shadow: 0 1px 1px rgba(131, 130, 130, 0.5); 
+    cursor: none !important;
+    border: 1px solid rgba(131, 130, 130, 0.5); 
+    box-sizing: border-box;
+  }
+  
+  .TouchRippleCard input {
+    width:98%;
+    font-size: 2rem;
+    margin: 10px;
+    margin-bottom: 10px;
+    border: none;
+    transform: translate(0px, 0px);
+    text-shadow: 0 1px 1px rgba(131, 130, 130, 0.5); 
+    color: rgb(34, 34, 34);
+  }
+  
+
+  .TouchRippleCard p.title{
+    font-size: 1.1rem;
+    background-color: #ccc;
+    padding: 10px;
+    margin-top:0;
+    color: rgb(34, 34, 34);
+  }
+  
+  .TouchRippleCard div.variant p {
+    font-size: .9rem;
+    margin-left: 10px;
+    padding: 10px;
+    background-color: rgb(238, 238, 238);
+    color:rgb(88, 88, 88);
+  }
+
+  .TouchRippleCard div p.selected{
+    background-color:rgba(19, 115, 241, .7);
+    color:#fff;
+    text-shadow: 0 1px 1px rgba(150, 1500, 150, 0.2); 
+  }
