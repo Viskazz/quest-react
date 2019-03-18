@@ -21,7 +21,7 @@ export default function questions(state = initialState, action) {
 
       // add empty 'answer' field to json store
       withSort.map(item =>{
-          item.answer ='';
+          return item.answer ='';
        })
 
       withSort.sort((a, b) => a.order - b.order);
@@ -30,10 +30,11 @@ export default function questions(state = initialState, action) {
 
     case 'INPUT_DATA':
      // если индексы ответа и стора совпадают - добавляем в стор значение ответа
-     const answered = state.map(item => {
+     state.map(item => {
       if (item.index === action.payload.qIndex) {
         item.answer = action.payload.answer;
       }
+      return item;
      
     });
 

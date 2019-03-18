@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { FadeTransition, TransitionGroup } from '../Transitions/FadeTransition';
+import { FadeTransition } from '../Transitions/FadeTransition';
 import { TouchRippleButton } from '../TouchRippleButton/TouchRippleButton';
 import { connect } from 'react-redux';
 import {prepareAnswers} from '../../actions/answersActions';
 
 class Agree extends Component {
-  constructor(props)  {
-    super(props);
-  };
-
     styles ={
         back : {
             backgroundColor: this.props.settings.backgroundColor

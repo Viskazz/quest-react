@@ -3,27 +3,29 @@ import React, { Component, Fragment } from 'react';
 import './App.css';
 import { fetchQuestions, fetchVariants, fetchSettings } from './api';
 import { connect } from 'react-redux';
-import { getQuestions} from './actions/questActions';
-import { getVariants} from './actions/variantActions';
+import { getQuestions } from './actions/questActions';
+import { getVariants } from './actions/variantActions';
 import { getSettings } from './actions/settingsActions';
 import { resetAnswers } from './actions/answersActions';
 import TouchRippleCard from './components/TouchRippleCard/TouchRippleCard';
-import { TouchRippleButton } from './components/TouchRippleButton/TouchRippleButton';
 import Agree from './components/Agree/Agree';
 import { FadeTransition, TransitionGroup } from './components/Transitions/FadeTransition';
 
 class App extends Component {
 
-  componentWillMount = function() {
-      fetchQuestions().then(result => this.props.onGetQuestions(result));
-      fetchVariants().then(result => this.props.onGetVariants(result));
-      fetchSettings().then(result => this.props.onGetSettings(result));
+  state ={
+    loading: true
+  }
+
+  componentDidMount = () => {
+    fetchQuestions().then(result => this.props.onGetQuestions(result));
+    fetchVariants().then(result => this.props.onGetVariants(result));
+    fetchSettings().then(result => {
+      this.props.onGetSettings(result);
+      this.setState({loading: false});
+    });
   };
 
-  componentDidMount = ()=>{
-    // this.props.onResetAnswers();
-    console.log(this.props.answers);
-  }
 
   shouldComponentUpdate(nextProps, nextState) {
     // не знаю работает ли
@@ -31,11 +33,11 @@ class App extends Component {
 
   }
 
-  styles ={
-    back : {
-        // backgroundImage: `url(../../${this.props.settings.backgroundImage})`, 
-        backgroundColor: this.props.settings.backgroundColor,
-        
+  styles = {
+    back: {
+      // backgroundImage: `url(../../${this.props.settings.backgroundImage})`, 
+      backgroundColor: this.props.settings.backgroundColor,
+
     },
     button: {
       backgroundColor: this.props.settings.buttonBackgroundColor,
@@ -51,34 +53,30 @@ class App extends Component {
     }
   };
   render() {
-    // if (this.props.questions!=undefined)
- 
+    if (this.state.loading){
+      return ('Загрузка');
+    }
+
     return (
       <Fragment>
-       
-        <TransitionGroup className="questions" appear={true} style={this.styles.back}>
-         <FadeTransition>
-           <div>
-           <img src="/images/logo.png" width="333px"></img>
-           { this.props.questions.map((quest, i) => {
-              return (
-                <FadeTransition key={ i }>
-                  <Fragment>
-                  
-                    <TouchRippleCard
-                       qTitle={ quest.title } qIndex={ quest.index } qType={ quest.type }
-                       isFirstLetterUppercase = { quest.type === 'email'? false: true } 
-                      
-                       />
-                    </Fragment>
-                </FadeTransition>
-              )
+        <TransitionGroup className="questions" appear={ true } style={ this.styles.back }>
+          <FadeTransition>
+            <div>
+              <img src="/images/logo.png" alt='Логотип' width="333px"></img>
+              { this.props.questions.map((quest, i) => {
+                  return (
+                    <FadeTransition key={ i }>
+                      <Fragment>
+                        <TouchRippleCard qTitle={ quest.title } qIndex={ quest.index } qType={ quest.type } isFirstLetterUppercase={ quest.type === 'email' ? false : true } />
+                      </Fragment>
+                    </FadeTransition>
+                  )
                 
-            }) }
+                }) }
               <Agree />
-              </div>
-        </FadeTransition>
-      </TransitionGroup>
+            </div>
+          </FadeTransition>
+        </TransitionGroup>
       </Fragment>
       );
   } //end render

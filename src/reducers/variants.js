@@ -10,11 +10,11 @@ export default function variants(state = initialState, action) {
   switch (action.type) {
     case 'SELECT_VARIANT':
     // если индексы клика и стора совпадают - выделяем\снимаем выделение
-      const selected = state.map(item => {
+      state.map(item => {
         if (item.index === action.payload.index) {
-          item.selected = !item.selected;
-        }
-       
+           item.selected = !item.selected;
+        };
+        return item;
       });
 
       return [...state];
@@ -30,6 +30,7 @@ export default function variants(state = initialState, action) {
       // add empty 'selected' field to json store
       withSelected.map(item =>{
         item.selected = false;
+        return item;
      });
 
      return withSelected;

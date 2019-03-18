@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers';
-import { BrowserRouter as Router,  Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router,  Route } from 'react-router-dom';
 import {BrowserHistory} from 'react-dom'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

@@ -3,23 +3,23 @@ import { connect } from 'react-redux';
 import { setTimeout, clearTimeout } from 'timers';
 import { FadeTransition, TransitionGroup } from './Transitions/FadeTransition';
 import { postAnswers } from '../api';
-import {prepareAnswers} from '../actions/answersActions';
+import { prepareAnswers } from '../actions/answersActions';
 
 class Print extends Component {
-
+  timerId = null;
   startTimer = function() {
     this.timerId = setTimeout(() => {
       this.props.history.push('/');
-    }, 2000);
+    }, 4000);
   };
 
   startPrinter = function() {
     this.timerId = setTimeout(() => {
-        window.print({
-            printer: "",
-            headerFooterEnabled: false
-        });
-      }, 1000);
+      window.print({
+        printer: "",
+        headerFooterEnabled: false
+      });
+    }, 1000);
   };
 
   submitAnswers = (answers) => {
@@ -36,40 +36,40 @@ class Print extends Component {
 
 
   prepareAndSubmit = () => {
-  const newStateObject = Object.assign({}, this.props.questions);
-  const temp = Array.from(Object.keys(newStateObject), k => newStateObject[k]);
-  const vars = Object.assign({}, this.props.variants);
-  const temp2 = Array.from(Object.keys(vars), k=>vars[k]);
-  const temp3 = temp.concat(temp2);
-  this.submitAnswers(temp3);
+    const newStateObject = Object.assign({}, this.props.questions);
+    const temp = Array.from(Object.keys(newStateObject), k => newStateObject[k]);
+    const vars = Object.assign({}, this.props.variants);
+    const temp2 = Array.from(Object.keys(vars), k => vars[k]);
+    const temp3 = temp.concat(temp2);
+    this.submitAnswers(temp3);
   }
 
+  // передаем стор вопросов для вычленения из них ответов
   componentDidMount = function() {
     this.prepareAndSubmit();
-  };
-
- // передаем стор вопросов для вычленения из них ответов
-  componentWillMount = function() {
+    clearTimeout(this.timerId);
   };
 
   render() {
     return (
       <Fragment>
-        <TransitionGroup className="unions" appear={true} >
-          <FadeTransition >
-              <div>
-                {this.props.answers.map((item, i)=>{
+        <TransitionGroup className="unions" appear={ true }>
+          <FadeTransition>
+            <div>
+              { this.props.answers.map((item, i) => {
                   return (
-                    <p key={i} className="no-print">{item}</p>
+                    <p key={ i } className="no-print">
+                      { item }
+                    </p>
                   )
-                })}
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p className="no-print" style={{fontSize: '32px'}}>Спасибо за Ваше участие!</p>
-                <p className="no-print" style={{fontSize: '38px'}}>Пожалуйста, возьмите ваш талон !</p>
-                <img className="only-print" src="/images/logo.png"></img>
-                <p className="only-print" style={{fontSize: '38px'}}>Молекулярный коктейль от Axoft</p>
+                }) }
+              <p> </p>
+              <p> </p>
+              <p> </p>
+              <p className="no-print" style={ { fontSize: '32px' } }>Спасибо за Ваше участие!</p>
+              <p className="no-print" style={ { fontSize: '38px' } }>Пожалуйста, возьмите ваш талон !</p>
+              <img className="only-print" src="/images/logo.png" alt='Логотип'></img>
+              <p className="only-print" style={ { fontSize: '38px' } }>Молекулярный коктейль от Axoft</p>
             </div>
           </FadeTransition>
         </TransitionGroup>
