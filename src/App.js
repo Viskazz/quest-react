@@ -28,9 +28,7 @@ class App extends Component {
 
 
   shouldComponentUpdate(nextProps, nextState) {
-    // не знаю работает ли
     return nextProps.variants !== this.props.variants || nextProps.questions !== this.props.questions || nextProps.settings !== this.props.settings;
-
   }
 
   styles = {

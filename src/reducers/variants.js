@@ -20,7 +20,6 @@ export default function variants(state = initialState, action) {
       return [...state];
 
     case 'VARIANTS_SUCCESS':
-      // make new object from state and payload. No mutations here
       let newStateObject = Object.assign({}, state, action.payload);
       log('variants loading done');
       
